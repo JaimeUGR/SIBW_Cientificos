@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block css_ext %}
+	<link rel="stylesheet" href="/css/gestion_cientificos.css">
+{% endblock %}
+{% block main %}
+	<main>
+		<div class="hero-buscadores">
+			<div class="hero-buscador">
+				<div id="buscador">
+					<label>
+						<input type="text" id="inputBuscador" placeholder="Buscar por nombre...">
+					</label>
+					<div id="cientificosSugeridos">
+						<!--<div class="cientifico-sugerido">
+							<a href="#">Científico X</a>
+						</div>
+						<div class="cientifico-sugerido">
+							<a href="#">Científico X</a>
+						</div>
+						<div class="cientifico-sugerido">
+							<a href="#">Científico X</a>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		<section class="hero-principal">
+			<h1>Científicos</h1>
+			<div class="div-buscador">
+				<form class="buscador" action="/gestion/cientificos" method="GET">
+					<label>
+						<select id="opciones" name="tipo_busqueda">
+							<option value="nombre">Nombre</option>
+							<option value="biografia">Biografía</option>
+						</select>
+					</label>
+					<label>
+						<input type="text" name="busqueda">
+					</label>
+					<input type="submit" name="accion" value="Buscar">
+				</form>
+			</div>
+			<div class="lista-cientificos">
+				{% include "tarjeta_nuevo_cientifico.html" %}
+
+				{% for cientifico in cientificos %}
+				{% include "tarjeta_cientifico.html" %}
+				{% endfor %}
+			</div>
+		</section>
+	</main>
+{% endblock %}
+
+{% block script_ext %}
+	<script src="/js/portada.js"></script>
+{% endblock %}

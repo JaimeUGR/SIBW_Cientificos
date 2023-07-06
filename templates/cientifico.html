@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+	{% block css_ext %}
+		{% if modo_impresion == false %}
+			<link rel="stylesheet" href="/css/cientifico.css">
+		{% else %}
+			<link rel="stylesheet" href="/css/cientifico_imprimir.css">
+		{% endif %}
+	{% endblock %}
+
+	{% block hero_principal %}
+		<article class="hero-principal">
+			{% if usuario is not null and (usuario.permisos == "Gestor" or usuario.permisos == "Superusuario") %}
+				<div class="cientifico-edicion">
+					{% set edit_params = 'id=' ~ cientifico.id ~ (redireccion is not null ? '&redireccion=' ~ redireccion|url_encode : '') %}
+					{% set publicar_params = 'estado=' ~ (cientifico.publicado ? 0 : 1) %}
+					<a class="cientifico-edicion-editar" href="/gestion/cientificos?accion=editar&{{ edit_params }}">Editar</a>
+					<a class="cientifico-edicion-eliminar" href="/gestion/cientificos?accion=eliminar&{{ edit_params }}">Eliminar</a>
+					<a class="cientifico-edicion-publicar" href="/gestion/cientificos?accion=publicar&{{publicar_params }}&{{ edit_params }}">
+						{% if cientifico.publicado %}
+						No Publicar
+						{% else %}
+						Publicar
+						{% endif %}
+					</a>
+				</div>
+			{% endif %}
+			<div class="cientifico-cabecera">
+				<h2 class="cientifico-nombre">{{ cientifico.nombre }} {{ cientifico.apellidos }}</h2>
+			</div>
+			<div>
+				<div class="cientifico-info">
+					<!-- Se puede añadir toda la información que se quiera a esta tabla, siguiendo el formato -->
+					<table class="cientifico-info-datos">
+						{% if cientifico.fechaNacimiento is not null %}
+						<tr>
+							<th>Fecha de nacimiento</th>
+							<td>{{ cientifico.fechaNacimiento }}</td>
+						</tr>
+						{% endif %}
+						{% if cientifico.fechaMuerte is not null %}
+						<tr>
+							<th>Fecha de muerte</th>
+							<td>{{ cientifico.fechaMuerte }}</td>
+						</tr>
+						{% endif %}
+						{% if cientifico.paisOrigen is not null and cientifico.paisOrigen != "" %}
+						<tr>
+							<th>País de origen</th>
+							<td>{{ cientifico.paisOrigen }}</td>
+						</tr>
+						{% endif %}
+						{% if cientifico.lugarNacimiento is not null and cientifico.lugarNacimiento != "" %}
+						<tr>
+							<th>Lugar de nacimiento</th>
+							<td>{{ cientifico.lugarNacimiento }}</td>
+						</tr>
+						{% endif %}
+					</table>
+					{% if cientifico.tarjeta is not null %}
+						<a href="{{ cientifico.tarjeta }}">
+							<img class="cientifico-info-foto" src="{{ cientifico.tarjeta }}" alt="Foto Cientifico">
+						</a>
+					{% endif %}
+				</div>
+				<p class="cientifico-biografia">
+					{{ cientifico.descripcion | raw }}
+				</p>
+			</div>
+			<div class="cientifico-galeria">
+				<h2 class="cientifico-nombre">Galería</h2>
+				<div class="cientifico-galeria-fotos">
+					<!-- Se pueden añadir / quitar todas las imágenes que se deseen -->
+					{% for imagen_path in cientifico.galeria %}
+					<a href="{{ imagen_path }}">
+						<img class="cientifico-galeria-foto" src="{{ imagen_path }}" alt="Foto Galeria {{loop.index}}">
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="cientifico-hashtags">
+				<h2 class="cientifico-nombre">Hashtags</h2>
+				<div class="cientifico-lista-hashtags">
+					{% set lista_hashtags = cientifico.hashtags|split(',') %}
+					{% for hashtag in lista_hashtags %}
+						{% if hashtag != "" %}
+								<span class="hashtag">#{{ hashtag }}</span>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="cientifico-botones">
+				<!-- Botones Redes -->
+				{% for red in redes %}
+					<a href="{{ red.enlace }}">{{ red.nombre }}</a>
+				{% endfor %}
+
+				<!-- Boton Impresión -->
+				<a class="boton-imp" href="{{ url_impresion }}">Imprimir</a>
+			</div>
+			<!-- Se podría añadir a la sección anterior, pero he preferido separarlos al no ser un enlace -->
+			<div class="cientifico-comentarios">
+				<button class="boton-com" id="boton_com">Comentarios</button>
+			</div>
+		</article>
+	{% endblock %}
+
+	{% block hero_auxiliar %}
+		<section class="hero-auxiliar">
+			<a class="enlace-auxiliar" href="https://pradogrado2223.ugr.es"> Revista científica</a>
+			<a class="enlace-auxiliar" href="https://pradogrado2223.ugr.es"> Más científic@s</a>
+		</section>
+	{% endblock %}
+
+	{% block hero_ext %}
+		<section class="hero-comentarios" id="menu_comentarios">
+			<button class="boton-com-cierre" id="boton_cierre">Cerrar</button>
+			<h2 class="hero-comentarios-titulo">Comentarios</h2>
+			<div class="comentarios" id="cajon_comentarios">
+				{% for comentario in comentarios %}
+					{% include "comentario.html" %}
+				{% endfor %}
+			</div>
+			<h2 class="hero-comentarios-titulo">Comenta</h2>
+			{% if usuario is not null %}
+				<form action="/cientificos/{{ cientifico['id'] }}" method="POST" class="comentarios-form" id="formulario">
+					<!--<label for="campo_nombre">Nombre</label>
+					<input type="text" id="campo_nombre" required>
+					<label for="campo_email">Email</label>
+					<input type="email" id="campo_email" required>-->
+					<label for="campo_comentario">Comentario</label>
+					<textarea id="campo_comentario" name="comentario" required></textarea>
+					<!-- Cuando haya base de datos cambiarlo a tipo submit y cambiar el evento de JS -->
+					<input type="submit" id="campo_boton" value="Enviar">
+				</form>
+			{% else %}
+				<h3>Debes iniciar sesión para comentar.</h3>
+			{% endif %}
+		</section>
+	{% endblock %}
+
+	{% block script_ext %}
+		{% if modo_impresion == false %}
+			<script src="/js/cientifico.js"></script>
+		{% endif %}
+	{% endblock %}

@@ -1,0 +1,99 @@
+@import "base.css";
+
+main {
+    background-color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.formulario-edicion {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 2rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"] {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+input[type="file"]
+{
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+input[type="checkbox"]
+{
+    width: 3rem;
+    margin-left: 3rem;
+}
+
+input[type="submit"]
+{
+    margin-top: 2rem;
+    font-size: 2rem;
+    min-width: fit-content;
+    width: 20%;
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.biografia {
+    margin-top: 1rem;
+    padding: 2rem;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 20rem;
+}
+
+form > h2 {
+    margin-top: 2rem;
+}
+
+form > h3 {
+    margin-top: 1.5rem;
+}
+
+.label-imagen {
+    display: flex;
+}
+
+.mini-imagen {
+    max-width: 20rem;
+}
+
+.label-hashtag {
+    display: flex;
+}
+
+.label-hashtag > span {
+    min-width: 15rem;
+    font-weight: normal;
+}
+
+.hashtags {
+    margin-top: 1rem;
+    padding: 0.2rem;
+    min-width: 20rem;
+    max-width: 100%;
+    min-height: 5rem;
+}

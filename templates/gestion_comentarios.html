@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block css_ext %}
+<link rel="stylesheet" href="/css/gestion_comentarios.css">
+{% endblock %}
+{% block main %}
+<main>
+	<h1>Comentarios</h1>
+	<div class="div-buscador">
+		<form class="buscador" action="/gestion/comentarios" method="GET">
+			<label>Usuario
+				<input type="text" name="usuario">
+			</label>
+			<input type="submit" name="accion" value="Buscar">
+		</form>
+	</div>
+	<div class="lista-comentarios">
+		{% for comentario in comentarios %}
+			{% include "comentario.html" %}
+		{% endfor %}
+	</div>
+</main>
+{% endblock %}

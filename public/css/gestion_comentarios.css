@@ -1,0 +1,89 @@
+@import "base.css";
+
+main {
+    background-color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.lista-comentarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50rem, 1fr));
+    grid-gap: 1rem;
+}
+
+.comentario {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    background-color: #ffd87c;
+}
+
+.comentario-autor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: center;
+    margin-bottom: 0.2rem;
+}
+
+.comentario-fecha {
+    align-self: center;
+    font-style: italic;
+    color: gray;
+}
+
+.comentario-texto {
+    font-size: 1.15rem;
+    margin-top: 1.25rem;
+    word-wrap: break-word;
+    margin-bottom: 1.25rem;
+}
+
+.comentario-editado {
+    text-decoration: underline;
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.comentario-iconos {
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 16px;
+}
+
+.comentario-icono-editar {
+    display: inline;
+    font-size: 3.5rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.comentario-icono-eliminar {
+    display: inline;
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.div-buscador {
+    margin: 1rem 0;
+}
+
+.buscador > label {
+    font-weight: bold;
+    font-size: 1.4rem;
+}

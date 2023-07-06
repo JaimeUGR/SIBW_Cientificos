@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ titulo_pagina }}</title>
+	{% block css_ext %}
+	<link rel="stylesheet" href="/css/base.css">
+	{% endblock %}
+</head>
+<body class="content">
+	{% block contenido_body %}
+	{% block header %}
+	<header class="header">
+		<div class="header-top">
+			<img class="header-logo" src="/resources/logo.png" alt="logo">
+			<h1 class="header-title">Científic@s<br>reconocid@s</h1>
+			<div class="header-perfil">
+				{% if usuario is not null %}
+					<button class="boton-perfil" id="botonPerfil">{{ usuario.usuario }}</button>
+					<div id="menuPerfil">
+						<a href="/perfil" class="menu-perfil-op">Perfil</a>
+						{% if usuario.permisos == "Superusuario" %}
+							<a href="/gestion/administracion" class="menu-perfil-op">Administración</a>
+						{% endif %}
+						{% if usuario.permisos == "Gestor" or usuario.permisos == "Superusuario" %}
+							<a href="/gestion/cientificos" class="menu-perfil-op">Científicos</a>
+						{% endif %}
+						{% if usuario.permisos == "Moderador" or usuario.permisos == "Superusuario" %}
+							<a href="/gestion/comentarios" class="menu-perfil-op">Comentarios</a>
+						{% endif %}
+						<a href="/logout" class="menu-perfil-op">Cerrar sesión</a>
+					</div>
+				{% else %}
+					<a href="/login" class="boton-perfil">Iniciar Sesión</a>
+				{% endif %}
+			</div>
+		</div>
+		<nav class="nav-bar">
+			<ul class="nav-links">
+				<li class="nav-link">
+					<a href="/">
+						<span class="nav-link-text">Menu 1</span>
+					</a>
+				</li>
+				<li class="nav-link">
+					<a href="/">
+						<span class="nav-link-text">Menu 2</span>
+					</a>
+				</li>
+				<li class="nav-link">
+					<a href="/">
+						<span class="nav-link-text">Menu 3</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	{% endblock %}
+	{% block main %}
+	<main class="hero">
+		{% block hero_principal %}
+		{% endblock %}
+
+		{% block hero_auxiliar %}
+		<section class="hero-auxiliar">
+			{% block hero_auxiliar_in %}
+			{% endblock %}
+		</section>
+		{% endblock %}
+
+		{% block hero_ext %}
+		{% endblock %}
+	</main>
+	{% endblock %}
+	{% block footer %}
+	<footer class="footer">
+		<h2 class="footer-copyright">&copy; Copyright 2023 SIBW - Jaime</h2>
+		<address class="footer-contact">contacto@dominio.com</address>
+		{% block footer_ext %}
+		{% endblock %}
+	</footer>
+	{% endblock %}
+
+	{% if usuario is not null %}
+		<script src="/js/opciones_perfil.js"></script>
+	{% endif %}
+
+	{% block script_ext %}
+	{% endblock %}
+	{% endblock %}
+</body>
+</html>

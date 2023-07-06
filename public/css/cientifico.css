@@ -1,0 +1,290 @@
+@import "base.css";
+
+.hero-principal {
+    background-color: var(--verde-cute);
+    flex: 3 1 70rem;
+    padding: 2rem;
+    border-radius: var(--main-content-radius);
+    position: relative;
+}
+
+/*
+    Edición de la información
+ */
+.cientifico-edicion {
+    z-index: 99;
+    padding: 0.75rem;
+    background-color: var(--negro);
+    border-radius: 0 0 0 0.75em;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.cientifico-edicion > a {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    color: black;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.cientifico-edicion-editar {
+    background-color: #48ae76;
+    margin-right: 0.75rem;
+}
+
+.cientifico-edicion-eliminar {
+    background-color: #ea5050;
+    margin-right: 0.75rem;
+}
+
+.cientifico-edicion-publicar {
+    background-color: #59d6f2;
+}
+
+
+.cientifico-cabecera {
+    margin-bottom: 2rem;
+}
+
+.cientifico-nombre {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.cientifico-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-evenly;
+    margin-bottom: 2.5rem;
+}
+
+.cientifico-info-foto {
+    max-width: max(15vw, 20rem);
+}
+
+.cientifico-info-datos {
+    background-color: var(--verde-cute1);
+    font-size: 1.5rem;
+    text-align: left;
+    border-spacing: 2rem 0;
+    padding: 1rem 0;
+    border: var(--cute-border-size) solid black;
+    border-radius: var(--main-content-radius);
+}
+
+.cientifico-biografia {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.cientifico-galeria {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+.cientifico-galeria-fotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-items: center;
+}
+
+.cientifico-galeria-foto {
+    max-width: max(15vw, 20rem);
+}
+
+.cientifico-hashtags {
+    margin-bottom: 3rem;
+}
+
+.cientifico-lista-hashtags {
+    display: flex;
+    column-gap: 1.5rem;
+}
+
+.hashtag {
+    font-size: 1.5rem;
+    background-color: orange;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 2px solid black;
+}
+
+.cientifico-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.cientifico-botones > a {
+    text-decoration: none;
+    color: black;
+    padding: 1rem 2rem;
+    background-color: #aef048;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: var(--main-content-radius);
+    border: var(--cute-border-size) solid black;
+}
+
+/* Animación botones de contacto */
+.cientifico-botones > a:hover {
+    background-color: #8ec931;
+}
+
+.cientifico-comentarios {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.boton-com {
+    width: fit-content !important;
+}
+
+.boton-com, .boton-com-cierre {
+    width: 100%;
+    color: black;
+    padding: 1rem 2rem;
+    background-color: #aef048;
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-radius: var(--main-content-radius);
+    border: var(--cute-border-size) solid black;
+}
+
+.boton-com:hover, .boton-com-cierre {
+    background-color: #8ec931;
+    cursor: pointer;
+}
+
+.hero-comentarios {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 25%;
+    min-width: 35rem;
+    height: 100vh;
+    z-index: 100;
+    background-color: white;
+    overflow-y: scroll;
+    padding: 2rem;
+    border-left: 10px solid var(--negro);
+    flex-direction: column;
+}
+
+h3 {
+    text-align: center;
+}
+
+.boton-com-cierre {
+    background-color: #ea6868 !important;
+}
+
+.boton-com-cierre:hover {
+    background-color: #e25050 !important;
+}
+
+.hero-comentarios-titulo {
+    align-self: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.comentario {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.comentario-autor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: center;
+    margin-bottom: 0.2rem;
+}
+
+.comentario-fecha {
+    align-self: center;
+    font-style: italic;
+    color: gray;
+}
+
+.comentario-texto {
+    font-size: 1.15rem;
+    margin-top: 1.25rem;
+    word-wrap: break-word;
+    margin-bottom: 1.25rem;
+}
+
+.comentario-editado {
+    text-decoration: underline;
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.comentario-iconos {
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 16px;
+}
+
+.comentario-icono-editar {
+    display: inline;
+    font-size: 2rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.comentario-icono-eliminar {
+    display: inline;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.comentarios-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comentarios-form > label {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.comentarios-form > input {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+#campo_comentario {
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 15rem;
+    font-size: 1.2rem;
+}
+
+#campo_boton {
+    margin-top: 2rem;
+    padding: 1rem;
+}

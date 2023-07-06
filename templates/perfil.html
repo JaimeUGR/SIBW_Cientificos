@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+	{% block css_ext %}
+		<link rel="stylesheet" href="/css/perfil.css">
+	{% endblock %}
+
+	{% block contenido_body %}
+		<main>
+			<h1>Gestión del perfil</h1>
+
+			<div class="perfil">
+				<h2>Tus datos</h2>
+				<label for="datos_usuario">Usuario:</label>
+				<span id="datos_usuario">{{ usuario }}</span>
+				<br>
+				{% if permisos != "Registrado" %}
+					<label for="datos_permisos">Permisos:</label>
+					<span id="datos_permisos">{{ permisos }}</span>
+					<br>
+				{% endif %}
+				<label for="datos_nombre">Nombre:</label>
+				<span id="datos_nombre">{{ nombre }}</span>
+				<br>
+				<label for="datos_apellidos">Apellidos:</label>
+				<span id="datos_apellidos">{{ apellidos }}</span>
+				<br>
+				<label for="datos_email">Email:</label>
+				<span id="datos_email">{{ email }}</span>
+			</div>
+
+			<div class="edicion">
+				<h2>Edita tu perfil</h2>
+				<form action="/perfil" method="POST" id="formularioEdicion">
+					<label for="cambiarNombre">Nombre:</label>
+					<input type="text" id="cambiarNombre" name="nuevoNombre">
+
+					<label for="cambiarApellidos">Apellidos:</label>
+					<input type="text" id="cambiarApellidos" name="nuevosApellidos">
+
+					<label for="cambiarEmail">Email:</label>
+					<input type="email" id="cambiarEmail" name="nuevoEmail">
+
+					<label for="cambiarContra">Contraseña nueva:</label>
+					<input type="password" id="cambiarContra" name="nuevaPassword">
+
+					<div class="guardar-cambios">
+						<h3>Autorizar los cambios</h3>
+						<label for="password">Contraseña actual:</label>
+						<input type="password" id="password" name="password" required>
+						<br>
+						<input type="submit" value="Guardar cambios">
+					</div>
+
+				</form>
+			</div>
+
+			<div class="enlaces">
+				<a class="volver-portada" href="/">Página Principal</a>
+			</div>
+		</main>
+	{% endblock %}

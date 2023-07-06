@@ -1,0 +1,30 @@
+RewriteEngine On
+RewriteBase /
+Options -Indexes
+
+# CSS JS RECURSOS Públicos
+RewriteRule ^(.*\.(css|js|png|jpe?g))$ public/$1 [END,L]
+
+# FORMA 1 DE URL LIMPIAS
+RewriteRule ^cientificos/([0-9]+)$ public/cientifico.php?id=$1 [END,L]
+RewriteRule ^cientificos/([0-9]+)/imprimir$ public/cientifico.php?id=$1&modo_impresion [END,L]
+RewriteRule ^api/([A-Za-z]+)$ public/api.php?function=$1 [QSA,END,L]
+RewriteRule ^login$ public/login.php [END,L]
+RewriteRule ^signup$ public/signup.php [END,L]
+RewriteRule ^perfil$ public/perfil.php [END,L]
+RewriteRule ^logout$ public/logout.php [END,L]
+RewriteRule ^gestion/administracion$ public/gestion_administracion.php [END,L]
+RewriteRule ^gestion/cientificos$ public/gestion_cientificos.php [END,L]
+RewriteRule ^gestion/comentarios$ public/gestion_comentarios.php [END,L]
+
+# Rewrite Genérico
+RewriteRule ^(.*)$ public/index.php [END,L]
+
+# Aquí se indica el PATH absoluto a la carpeta pública (facilita localizar unívocamente los resources
+# desde cualquier módulo)
+SetEnv SIBW_PUBLIC_PATH /var/www/html/public
+
+# Aquí se indica la información de la BD
+SetEnv SIBW_DB SIBW
+SetEnv SIBW_DB_ADMIN_USER admin
+SetEnv SIBW_DB_ADMIN_PASS admin

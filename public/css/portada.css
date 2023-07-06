@@ -1,0 +1,193 @@
+@import "base.css";
+
+.hero-principal {
+    flex: 3 1 70rem; /* El elemento 3*crece / decrece y tiene un tamaño mínimo */
+}
+
+.hero-principal-buscador {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    border-radius: var(--main-content-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buscador {
+    width: min(100%, 50rem);
+    text-align: center;
+    position: relative;
+    border-radius: 6px;
+    border: 4px solid #3c3c3c;
+}
+
+#inputBuscador {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 0.75rem;
+}
+
+#cientificosSugeridos {
+    position: absolute;
+    min-width: calc(100% + 8px);
+    left: -4px;
+    max-height: 24rem;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 4px solid #3c3c3c;
+    border-top: 1px solid #3c3c3c;
+    border-radius: 0 0 6px 6px;
+    display: none;
+}
+
+.cientifico-sugerido {
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 1.6rem;
+    padding: 0.8rem 0;
+    background-color: #272727;
+    color: white;
+}
+
+.cientifico-sugerido:hover {
+    background-color: #202020;
+    font-weight: bold;
+    color: #e3e3e3;
+}
+
+.cientifico-sugerido > a {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: none;
+}
+
+.busqueda-highlight {
+    background-color: #be8047;
+    font-weight: bold;
+}
+
+.hero-principal-cientificos {
+    display: grid;
+    padding: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(max(20vw, 23rem), 1fr));
+    gap: 3rem;
+    background-color: white;
+    border-radius: var(--main-content-radius);
+    justify-items: center;
+}
+
+/*
+    Para hacer la tarjeta, se utiliza un display flex (aunque no es estrictamente necesario, facilita
+    la alineación de los elementos).
+ */
+.cientifico {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--amarillo);
+    box-shadow: 0.6em -0.5em var(--amarillo-oscuro2);
+    transition: 0.08s ease-in; /* Tiempo de transisión de la animación */
+    min-width: 100%; /* Ocupa todo el espacio disponible */
+    max-width: 18vw;
+    min-height: min-content;
+}
+
+/* Animación de la tarjeta cuando está el cursor encima */
+.cientifico:hover {
+    background-color: var(--amarillo-oscuro1);
+    box-shadow: 0.7em -0.6em rgb(231, 170, 23);
+}
+
+.nuevo-cientifico {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--verde-cute);
+    box-shadow: 0.6em -0.5em #76b25b;
+    transition: 0.08s ease-in; /* Tiempo de transisión de la animación */
+    min-width: 100%; /* Ocupa todo el espacio disponible */
+    max-width: 18vw;
+    min-height: min-content;
+}
+
+.nuevo-cientifico:hover {
+    background-color: #76b25b;
+    box-shadow: 0.7em -0.6em #6ca753;
+}
+
+.nuevo-cientifico > a {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.nuevo-cientifico > a > span {
+    text-align: center;
+    background-color: black;
+    color: var(--verde-cute);
+    padding: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.cientifico > a {
+    padding: 3rem 2rem;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 1.5rem;
+    height: 100%;
+    flex-direction: column;
+}
+
+.cientifico-edicion {
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.cientifico-edicion > a {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.cientifico-edicion-editar {
+    background-color: #48ae76;
+}
+
+.cientifico-edicion-eliminar {
+    background-color: #ea5050;
+}
+
+.cientifico-edicion-publicar {
+    background-color: #59d6f2;
+}
+
+.imagen-cientifico {
+    max-width: max(18vw, 16rem); /* Limitamos el tamaño de la imagen */
+    max-height: max(18vh, 16rem);
+    width: auto;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.nombre-cientifico {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: None;
+    color: var(--negro);
+}

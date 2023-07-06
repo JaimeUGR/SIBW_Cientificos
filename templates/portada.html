@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+	{% block css_ext %}
+		<link rel="stylesheet" href="/css/portada.css">
+	{% endblock %}
+
+	{% block hero_principal %}
+		<div class="hero-principal">
+			<div class="hero-principal-buscador">
+				<div id="buscador">
+					<label>
+						<input type="text" id="inputBuscador" placeholder="Buscar por nombre...">
+					</label>
+					<div id="cientificosSugeridos">
+						<!--<div class="cientifico-sugerido">
+							<a href="#">Científico X</a>
+						</div>
+						<div class="cientifico-sugerido">
+							<a href="#">Científico X</a>
+						</div>
+						<div class="cientifico-sugerido">
+							<a href="#">Científico X</a>
+						</div>-->
+					</div>
+				</div>
+			</div>
+			<section class="hero-principal-cientificos">
+				{% include "tarjeta_nuevo_cientifico.html" %}
+
+				<!-- Se podría añadir un article por cada tarjeta -->
+				{% for cientifico in cientificos %}
+					{% if cientifico.publicado or (usuario is not null and (usuario.permisos == "Gestor" or usuario.permisos == "Superusuario")) %}
+						{% include "tarjeta_cientifico.html" %}
+					{% endif %}
+				{% endfor %}
+			</section>
+		</div>
+	{% endblock %}
+
+	{% block hero_auxiliar %}
+		<!-- Se pueden añadir / quitar todas los enlaces que se quiera -->
+		<section class="hero-auxiliar">
+			<a class="enlace-auxiliar" href="https://pradogrado2223.ugr.es"> Revista científica New UGR Times</a>
+			<a class="enlace-auxiliar" href="https://pradogrado2223.ugr.es"> Más científic@s</a>
+		</section>
+	{% endblock %}
+
+	{% block script_ext %}
+		<script src="/js/portada.js"></script>
+	{% endblock %}

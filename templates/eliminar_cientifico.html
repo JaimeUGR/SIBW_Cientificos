@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block css_ext %}
+<link rel="stylesheet" href="/css/eliminar_cientifico.css">
+{% endblock %}
+{% block main %}
+<main>
+	<h1>Confirmación de eliminación de {{ cientifico.nombre }} {{ cientifico.apellidos }}</h1>
+	<div class="eliminar">
+		{% set elim_params = 'id=' ~ cientifico.id %}
+		<form action="/gestion/cientificos?accion=eliminar&{{ elim_params }}" method="POST">
+			<input type="submit" name="confirmacion" value="Confirmar">
+		</form>
+	</div>
+</main>
+{% endblock %}

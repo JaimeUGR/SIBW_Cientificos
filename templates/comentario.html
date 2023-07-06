@@ -1,0 +1,20 @@
+<div class="comentario">
+	<span class="comentario-autor">{{ comentario.autor }}</span>
+	<span class="comentario-fecha">{{ comentario.fecha }}</span>
+	<p class="comentario-texto">{{ comentario.comentario }}</p>
+
+	{% if comentario.editado %}
+		{# //NOTE: Si se permite al usuario editar, cambiar este mensaje según quién lo haya editado #}
+		<span class="comentario-editado">Editado por moderador</span>
+	{% endif %}
+
+	{% if usuario is not null %}
+		{% if usuario.permisos == "Moderador" or usuario.permisos == "Superusuario" %}
+			{% set com_params = 'autor=' ~ comentario.autor ~ '&id=' ~ comentario.idCientifico ~ (redireccion is not null ? '&redireccion=' ~ redireccion|url_encode : '') %}
+			<div class="comentario-iconos">
+				<a class="comentario-icono-editar" href="/gestion/comentarios?accion=editar&{{ com_params }}">&#9998;</a>
+				<a class="comentario-icono-eliminar" href="/gestion/comentarios?accion=eliminar&{{ com_params }}">&#128465;</a>
+			</div>
+		{% endif %}
+	{% endif %}
+</div>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block css_ext %}
+<link rel="stylesheet" href="/css/editar_cientifico.css">
+{% endblock %}
+{% block main %}
+<main>
+	<h1>Crear Científico</h1>
+	<div class="edicion">
+		{% set crear_params = (redireccion is not null ? 'redireccion=' ~ redireccion|url_encode : '') %}
+		<form class="formulario-edicion" action="/gestion/cientificos?accion=crear&{{ crear_params }}" method="POST" enctype="multipart/form-data">
+			<h2>Datos Principales</h2>
+			<label>Nombre<br>
+				<input type="text" name="nombre" value="" required>
+			</label>
+			<label>Apellidos<br>
+				<input type="text" name="apellidos" value="">
+			</label>
+			<label>Fecha Nacimiento (DD/MM/YYYY)<br>
+				<input type="text" name="fecha_nacimiento" value="">
+			</label>
+			<label>Fecha Muerte (DD/MM/YYYY)<br>
+				<input type="text" name="fecha_muerte" value="">
+			</label>
+			<label>Lugar Nacimiento<br>
+				<input type="text" name="lugar_nacimiento" value="">
+			</label>
+			<label>País Origen<br>
+				<input type="text" name="pais_origen" value="">
+			</label>
+			<label>Biografía<br>
+				<textarea class="biografia" name="biografia"></textarea>
+			</label>
+			<h2>Imágenes</h2>
+			<label>Añadir imágenes<br>
+				<input type="file" name="imagenes_nuevas[]" multiple>
+			</label>
+			<h2>Hashtags</h2>
+			<label>Añadir hashtags (separados por ,)<br>
+				<textarea class="hashtags" name="hashtags"></textarea>
+			</label>
+			<input type="submit" value="Guardar">
+		</form>
+	</div>
+</main>
+{% endblock %}

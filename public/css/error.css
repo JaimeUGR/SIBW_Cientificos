@@ -1,0 +1,77 @@
+html
+{
+    font-size: 10px;
+}
+
+*
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.deco-top, .deco-bot
+{
+    min-width: 100%;
+    min-height: 10vh;
+    background: #f74a4a;
+}
+
+.deco-top
+{
+    border-bottom: solid black 5px;
+}
+
+.deco-bot
+{
+    border-top: solid black 5px;
+}
+
+main
+{
+    text-align: center;
+    height: 80vh;
+    display: grid;
+    grid-template-areas:
+            "titulo"
+            "error"
+            "volver";
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+h1
+{
+    font-size: 5rem;
+    text-align: center;
+    grid-area: titulo;
+}
+
+.error
+{
+    font-size: 2rem;
+    grid-area: error;
+    max-width: 80%;
+}
+
+.ayuda-volver
+{
+    grid-area: volver;
+    text-decoration: none;
+}
+
+.ayuda-volver > button
+{
+    font-size: 3rem;
+    border-radius: 10px;
+    border: solid black 3px;
+    padding: 20px 50px;
+    background: #3de970;
+}
+
+.ayuda-volver > button:hover
+{
+    background: #34b85c;
+}
+

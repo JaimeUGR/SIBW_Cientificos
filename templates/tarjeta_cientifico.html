@@ -1,0 +1,23 @@
+<div class="cientifico">
+	<a href="/cientificos/{{ cientifico.id }}">
+		<img class="imagen-cientifico" src="{{ cientifico.imagen }}" alt="Foto {{ cientifico.nombre }} {{ cientifico.apellidos }}">
+		<br>
+		<h2 class="nombre-cientifico">{{ cientifico.nombre }} {{ cientifico.apellidos }}</h2>
+	</a>
+	{% if usuario is not null and (usuario.permisos == "Gestor" or usuario.permisos == "Superusuario") %}
+		<!-- Añadir aquí los botones de edición -->
+		<div class="cientifico-edicion">
+			{% set edit_params = 'id=' ~ cientifico.id ~ (redireccion is not null ? '&redireccion=' ~ redireccion|url_encode : '') %}
+			{% set publicar_params = 'estado=' ~ (cientifico.publicado ? 0 : 1) %}
+			<a class="cientifico-edicion-editar" href="/gestion/cientificos?accion=editar&{{ edit_params }}">Editar</a>
+			<a class="cientifico-edicion-eliminar" href="/gestion/cientificos?accion=eliminar&{{ edit_params }}">Eliminar</a>
+			<a class="cientifico-edicion-publicar" href="/gestion/cientificos?accion=publicar&{{publicar_params }}&{{ edit_params }}">
+				{% if cientifico.publicado %}
+					No Publicar
+				{% else %}
+					Publicar
+				{% endif %}
+			</a>
+		</div>
+	{% endif %}
+</div>

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+	{% block css_ext %}
+	<link rel="stylesheet" href="/css/editar_cientifico.css">
+	{% endblock %}
+	{% block main %}
+	<main>
+		<h1>Edición de {{ cientifico.nombre }} {{ cientifico.apellidos }}</h1>
+		<div class="edicion">
+			{% set edit_params = 'id=' ~ cientifico.id ~ (redireccion is not null ? '&redireccion=' ~ redireccion|url_encode : '') %}
+			<form class="formulario-edicion" action="/gestion/cientificos?accion=editar&{{ edit_params }}" method="POST" enctype="multipart/form-data">
+				<h2>Datos Principales</h2>
+				<label>Nombre<br>
+					<input type="text" name="nombre" value="{{ cientifico.nombre }}" required>
+				</label>
+				<label>Apellidos<br>
+					<input type="text" name="apellidos" value="{{ cientifico.apellidos }}">
+				</label>
+				<label>Fecha Nacimiento (DD/MM/YYYY)<br>
+					<input type="text" name="fecha_nacimiento" value="{{ cientifico.fecha_nacimiento }}">
+				</label>
+				<label>Fecha Muerte (DD/MM/YYYY)<br>
+					<input type="text" name="fecha_muerte" value="{{ cientifico.fecha_muerte }}">
+				</label>
+				<label>Lugar Nacimiento<br>
+					<input type="text" name="lugar_nacimiento" value="{{ cientifico.lugar_nacimiento }}">
+				</label>
+				<label>País Origen<br>
+					<input type="text" name="pais_origen" value="{{ cientifico.pais_origen }}">
+				</label>
+				<label>Biografía<br>
+					<textarea class="biografia" name="biografia">
+						{{ cientifico.biografia }}
+					</textarea>
+				</label>
+					<h2>Imágenes</h2>
+					<h3>Eliminar imágenes (las seleccionadas)</h3>
+					{% for imagen in imagenes %}
+						<label class="label-imagen"><img class="mini-imagen" src="{{ imagen }}" alt="Imagen {{ loop.index }}">
+							<input type="checkbox" name="imagenes_eliminadas[]" value="{{ imagen }}">
+						</label>
+					{% endfor %}
+				<label>Añadir imágenes<br>
+					<input type="file" name="imagenes_nuevas[]" multiple>
+				</label>
+				<h2>Hashtags</h2>
+				<label>Eliminar hashtags (los seleccionados)<br>
+				{% set lista_hashtags = cientifico.hashtags|split(',') %}
+
+				{% for hashtag in lista_hashtags %}
+					{% if hashtag != "" %}
+					<label class="label-hashtag"><span>{{ hashtag }}</span>
+						<input type="checkbox" name="hashtags_eliminados[]" value="{{ hashtag }}">
+					</label>
+					{% endif %}
+				{% endfor %}
+				</label>
+				<label>Añadir hashtags (separados por ,)<br>
+					<textarea class="hashtags" name="hashtags"></textarea>
+				</label>
+				<input type="submit" value="Guardar">
+			</form>
+		</div>
+	</main>
+	{% endblock %}

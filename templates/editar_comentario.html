@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block css_ext %}
+<link rel="stylesheet" href="/css/editar_comentario.css">
+{% endblock %}
+{% block main %}
+<main>
+	<h1>Edición de comentario</h1>
+	<div class="edicion">
+		<h2>Comentario de "{{ comentario.autor }}" en "{{ comentario.cientifico }}"</h2>
+		<div class="comentario-original">
+			<h3>Original</h3>
+			<p>{{ comentario.comentario }}</p>
+		</div>
+		<div class="comentario-edicion">
+			<h3>Editado</h3>
+			{% set com_params = 'autor=' ~ comentario.autor ~ '&id=' ~ comentario.idCientifico ~ (redireccion is not null ? '&redireccion=' ~ redireccion|url_encode : '') %}
+			<form action="/gestion/comentarios?accion=editar&{{ com_params }}" method="POST">
+				<label><textarea class="nuevo-comentario" name="nuevo_comentario" required>{{ comentario.comentario }}</textarea></label>
+				<br>
+				<input type="submit" value="Guardar">
+			</form>
+		</div>
+	</div>
+</main>
+{% endblock %}

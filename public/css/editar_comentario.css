@@ -1,0 +1,52 @@
+@import "base.css";
+
+main {
+    background-color: white;
+    border-radius: 16px;
+    height: 50vh;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.comentario-original {
+    margin-top: 1rem;
+}
+
+.comentario-original > p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 16px;
+    border: 2px solid black;
+}
+
+.comentario-edicion {
+    margin-top: 2rem;
+}
+
+.nuevo-comentario {
+    margin-top: 1rem;
+    max-width: 100%;
+    min-width: 100%;
+    height: 8rem;
+}
+
+input[type="submit"]
+{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

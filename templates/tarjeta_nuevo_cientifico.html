@@ -1,0 +1,6 @@
+{% if usuario is not null and (usuario.permisos == "Gestor" or usuario.permisos == "Superusuario") %}
+	<div class="nuevo-cientifico">
+		{% set crear_params = (redireccion is not null ? 'redireccion=' ~ redireccion|url_encode : '') %}
+		<a href="/gestion/cientificos?accion=crear&{{ crear_params }}"><span>Nuevo Científico</span></a>
+	</div>
+{% endif %}
